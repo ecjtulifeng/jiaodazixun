@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ecjtu_consult</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>image/fengjing2.jpg</name>
+			<type>1</type>
+			<location>D:/app开发/华东交通大学风景/fengjing2.jpg</location>
+		</link>
+	</linkedResources>
+</projectDescription>
