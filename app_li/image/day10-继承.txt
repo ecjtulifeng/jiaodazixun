@@ -1,0 +1,177 @@
+0、回顾
+
+
+一、 原型-补充
+
+ 1. 扩展对象属性 2种
+
+    1）扩展共有属性：通过构造函数.prototype添加的属性
+    2）扩展自有属性：给某一个具体的对象添加的属性
+
+    3）判断自有属性或共有属性
+
+         判断自有属性
+
+           obj.hasOwnProperty("属性名");
+
+         判断共有属性：
+
+           "属性名" in obj && ! obj.hasOwnProperty("属性名");
+         在原型对象中包含，但自己没有
+      
+ 2 删除属性
+ 
+         delete 对象.属性名
+
+         仅能删除当前对象自己的属性，无法删除共有属性
+
+ 3 原型链
+
+      所有父子级对象间由__proto__形成的多级引用关系
+
+      获得任意对象的父级原型对象
+
+二、 继承
+
+     为什么要继承：代码重用!节省空间!,
+
+     子对象可以使用父对象的属性和方法
+
+     1、 直接继承对象：想法设法修改对象的__proto__
+
+       1）仅仅修改一个对象的__proto__
+
+          Object.setPrototypeOf(子对象，父对象);
+
+       2) 通过修改构造函数的原型对象，实现批量修改后续子对象的继承关系
+
+          构造函数.prototype=父对象
+
+          强调：仅影响之后创建的对象的继承关系，之前创建的对象那个依旧使用旧构造函数.prototype
+
+          重写、扩展
+
+       3) Object.create(父对象,[{属性列表}])
+
+          创建一个空对象，继承父对象中的属性，继承后可在扩展属性和方法
+
+     2、仅继承结构：
+
+        function 父类型构造函数(属性参数1，属性参数2){
+
+          this.属性1 = 属性参数1;
+          this.属性2 = 属性参数2;
+        }
+
+
+        function 子类型构造函数(属性参数1，属性参数2，属性3){
+
+           父类型构造函数.apply(this,arrguments);
+           this.属性3 = 属性参数3；
+        }
+
+        var obj = new 子类型构造函数(属性参数1，属性参数2，属性3)；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Object.getPrototypeOf(子对象) ==> 子对象.__proto__(浏览器可能禁用)
+
+          var monkey = {
+             hair:true,
+             feeds:"banana",
+          }
+
+          function Human(name){
+            this.name = name;
+          }
+
+          Human.prototype=monkey;
+
+          var geoge = new Human("geoge");
+
+          console.log(monkey.isPrototypeOf(geoge));
+
+        检查对象的父对象：
+
+          父对象.isPrototypeOf(子对象);
+
+          判断对象是不是数组类型
+          Array.isArray=function(obj){//4种
+
+             //如果Array.prototype在obj的原型链中
+             return Array.prototype.isPrototypeOf(obj)
+
+             //instanceOf
+             //语法：obj instanceOf 构造函数
+             //判断obj对象是否是Array的实例
+             return obj instanceOf Array
+             // 实例：一个构造函数创建出的每个具体对象
+
+             //原型对象的constructor属性
+             return obj.constructor==Array;
+             
+             //利用object原型的toString方法
+
+             //call*apply
+
+             call在调用方法的一瞬间更换调用方法的对象
+
+          }
